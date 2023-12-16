@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import {changeStatus, deleteTask} from '../../containers/App/TaskThunk';
 import {AppDispatch} from '../../redux/store';
 import {changeTaskStatusById, deleteTaskById} from '../../containers/App/TaskSlice';
+import {Trash} from '@phosphor-icons/react';
 
 interface Props {
   task: Task;
@@ -24,7 +25,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   return (
     <div
-      className="border border-black p-2 flex items-center"
+      className="border border-black p-2 flex items-center rounded-xl"
     >
       <div className="flex items-center me-4">
         <input
@@ -47,7 +48,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
         onClick={() => onDeleteTask(task.id)}
         className="bg-red-600 text-white text-xl px-5 py-2 rounded-2xl"
       >
-        delete
+        <Trash size={32} />
       </button>
     </div>
   );
