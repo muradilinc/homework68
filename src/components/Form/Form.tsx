@@ -3,10 +3,11 @@ import {useDispatch} from 'react-redux';
 import {saveTask} from '../../containers/App/TaskSlice';
 import {postTask} from '../../containers/App/TaskThunk';
 import {AppDispatch} from '../../redux/store';
+import {TaskMutation} from '../../types';
 
 const Form = () => {
   const dispatch: AppDispatch = useDispatch();
-  const [task, setTask] = useState<Task>({
+  const [task, setTask] = useState<TaskMutation>({
     title: '',
     status: false,
   });
@@ -20,7 +21,10 @@ const Form = () => {
 
   const createTask = async (event: FormEvent) => {
     event.preventDefault();
-    dispatch(saveTask(task));
+    dispatch(saveTask({
+      ...task,
+      id: new Date().toString()
+    }));
     await dispatch(postTask());
   };
 
